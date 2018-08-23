@@ -2,12 +2,75 @@
 <html>
 <head>
 	<title></title>
+	<style>
+
+	#in{
+		padding: 5px 25px;
+		font-family: "Comic Sans MS", cursive, sans-serif;
+		font-size: 200%;
+		cursor: pointer;
+		position: absolute;
+		transform: translate(-50%,-50%);
+		top: 15%;
+		left: 12%;
+		border: 4px solid black;
+		display:inline-block;
+		border-radius: 5px;
+		background-color: #1ced50;
+		text-decoration: none;
+
+
+
+	}
+	body{
+	background: #ef32d9;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #89fffd, #ef32d9);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #89fffd, #ef32d9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	}
+	#coins{
+		font-family: "Comic Sans MS", cursive, sans-serif;
+
+
+	}
+
+
+
+	</style>
 </head>
 <body>
-	<script type="text/javascript">
-		localStorage.setItem("lives","1");
+	<h3 id="coins">Coins: error</h3>
+	<button id="in" type="button" onclick="buyLives()">Buy lives</button>
+	<script>
+	let price=2;
+	let lives=localStorage.getItem("lives");
+
+	document.getElementById("in").innerHTML="Buy lives, price: "+price+" coins"
+
+
+	//Coins
+	document.getElementById("coins").innerHTML="Coins: "+localStorage.getItem("coins");
+	if(localStorage.getItem("coins")==null){
+		document.getElementById("coins").innerHTML="Coins: 0"
+	}
+	//buy lives
+	boughtLives=localStorage.getItem("lives")+1;
+	function buyLives(){
+		if (price>localStorage.getItem("coins")) {
+
+		}else if(price<=localStorage.getItem("coins"))
+		{
+			localStorage.setItem("lives",boughtLives);
+			localStorage.setItem("coins",localStorage.getItem("coins")-price);
+			document.getElementById("coins").innerHTML="Coins: "+localStorage.getItem("coins");
+
+		}
+
+
+	}
+
 
 	</script>
+
 
 </body>
 </html>
