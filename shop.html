@@ -43,7 +43,8 @@
 	<script>
 	let price=2;
 	let lives=localStorage.getItem("lives");
-
+	//finish speed upgrades
+	
 	document.getElementById("in").innerHTML="Buy lives, price: "+price+" coins"
 
 
@@ -53,12 +54,12 @@
 		document.getElementById("coins").innerHTML="Coins: 0"
 	}
 	//buy lives
-	boughtLives=localStorage.getItem("lives")+1;
+	boughtLives=localStorage.getItem("lives");
+	boughtLives++;
 	function buyLives(){
 		if (price>localStorage.getItem("coins")) {
 
-		}else if(price<=localStorage.getItem("coins"))
-		{
+		}else{
 			localStorage.setItem("lives",boughtLives);
 			localStorage.setItem("coins",localStorage.getItem("coins")-price);
 			document.getElementById("coins").innerHTML="Coins: "+localStorage.getItem("coins");

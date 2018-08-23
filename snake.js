@@ -3,25 +3,27 @@ let ctx=canv.getContext("2d");
 
 let coinsGained=0;
 
+if (localStorage.getItem("speed")==null) {
+	localStorage.setItem("speed", 150);
+
+}
+
 if (localStorage.getItem("coins")==null) {
 	localStorage.setItem("coins", 0);
 
 }
 
-if (localStorage.getItem("lives")==null) {
-	localStorage.setItem("lives", 1);
 
-}
 
 let coinsHad= parseInt(localStorage.getItem("coins"));
 
-let lives=localStorage.getItem("lives");
+
 
 let foodColor=(Math.floor(Math.random() * 5));
 let foodColorString;
 let foodType=(Math.floor(Math.random() * 3));
 
-let speed = 150;
+let speed = localStorage.getItem("speed");
 
 let snakeSize = 10;
 let w = 351;
@@ -81,8 +83,8 @@ window.addEventListener("keypress",function(){
 function init()
 {
 	createSnake();
-  drawSnake();
-  update();
+  	drawSnake();
+  	update();
 	setInterval(update, speed);
 	createFood();
 	drawFood();
@@ -164,53 +166,28 @@ function checkBord()
 	{
 		if(x[0]==x[i] && y[0]==y[i])
 		{
-			if (lives==0) {
-				console.log("dieing...");
-				die();
-			}
-			lives--;
-			createSnake();
-
+			
+			die();
 		}
 
 	}
 
 
 	if (x[0]>=350) {
-		if (lives==0) {
-			console.log("dieing...");
-			die();
-		}
-		lives--;
-		createSnake();
-
+		die();
 	}
 	if (y[0]>=350) {
-		if (lives==0) {
-			console.log("dieing...");
-			die();
-		}
-		lives--;
-		createSnake();
+		die();
 	}
 	if (x[0]<=-1) {
-		if (lives==0) {
-			console.log("dieing...");
-			die();
-		}
-		lives--;
-		createSnake();
+		die();
 	}
 	if (y[0]<=-1) {
-		if (lives==0) {
-			console.log("dieing...");
-			die();
-		}
-		lives--;
-		createSnake();
+		die();
 	}
+		
 
-}
+
 function drawFood() {
 	ctx.fillStyle = foodColorString;
 	ctx.fillRect(food[0],food[1], 10, 10);
@@ -265,24 +242,23 @@ function checkFoodCollision()
 			score--;
 
 		}else if(foodType>= 2){
-		x[x.length] = x[x.length - 1] + 10;
-		y[y.length] = y[y.length - 1] + 10;
-		score++;
+			x[x.length] = x[x.length - 1] + 10;
+			y[y.length] = y[y.length - 1] + 10;
+			score++;
 		}else if(foodType==1){
 			for(let i = 0; i<10;i++){
-				x[x.length] = x[x.length - 1] + 10;
-				y[y.length] = y[y.length - 1] + 10;
+				
+					x[x.length] = x[x.length - 1] + 10;
+					y[y.length] = y[y.length - 1] + 10;
+
+
+				
 			}
 			score+=10;
 		}
 		createFood();
-		if(speed<=50)
-		{
-
-		}else
-		{
-			speed-=1;
-		}
+		
+		
 		document.getElementById("score").innerHTML = "Score: "+score;
 		foodType=(Math.floor(Math.random() * 8));
 	}
