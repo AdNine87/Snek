@@ -1,6 +1,20 @@
 let canv=document.getElementById("gc");
 let ctx=canv.getContext("2d");
 
+let coinsGained=0;
+
+if (localStorage.getItem("coins")==null) {
+	localStorage.setItem("coins", 0);
+
+}
+
+if (localStorage.getItem("lives")==null) {
+	localStorage.setItem("lives", 1);
+
+}
+
+let coinsHad= parseInt(localStorage.getItem("coins"));
+
 let lives=localStorage.getItem("lives");
 
 let foodColor=(Math.floor(Math.random() * 5));
@@ -151,8 +165,11 @@ function checkBord()
 		if(x[0]==x[i] && y[0]==y[i])
 		{
 			if (lives==0) {
-			window.location.replace("./game.html");
-		}
+				console.log("dieing...");
+				die();
+			}
+			lives--;
+			createSnake();
 
 		}
 
@@ -161,24 +178,36 @@ function checkBord()
 
 	if (x[0]>=350) {
 		if (lives==0) {
-			window.location.replace("./game.html");
+			console.log("dieing...");
+			die();
 		}
-		
+		lives--;
+		createSnake();
+
 	}
 	if (y[0]>=350) {
 		if (lives==0) {
-			window.location.replace("./game.html");
+			console.log("dieing...");
+			die();
 		}
+		lives--;
+		createSnake();
 	}
 	if (x[0]<=-1) {
 		if (lives==0) {
-			window.location.replace("./game.html");
+			console.log("dieing...");
+			die();
 		}
+		lives--;
+		createSnake();
 	}
 	if (y[0]<=-1) {
 		if (lives==0) {
-			window.location.replace("./game.html");
+			console.log("dieing...");
+			die();
 		}
+		lives--;
+		createSnake();
 	}
 
 }
@@ -257,15 +286,21 @@ function checkFoodCollision()
 		document.getElementById("score").innerHTML = "Score: "+score;
 		foodType=(Math.floor(Math.random() * 8));
 	}
-	localStorage.setItem("bucks", score);
-
-
-		
-	
-		
-		
-		
 
 }
+function die()
+{
+	if (score<=10)
+	{
+		coinsGained=0;
+
+	}else {
+		coinsGained=score-10;
+
+	}
+	alert("You died :( coins gained: "+coinsGained);
+	localStorage.setItem("coins",coinsGained+coinsHad);
+	window.location.replace("./index.html");
 
 
+}

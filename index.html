@@ -3,9 +3,10 @@
 <head>
 	<style type="text/css">
  	body{
- 		background: #283c86;  /* fallback for old browsers */
-		background: -webkit-linear-gradient(to left, #45a247, #283c86);  /* Chrome 10-25, Safari 5.1-6 */
-		background: linear-gradient(to left, #45a247, #283c86); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+		background: #1c92d2;  /* fallback for old browsers */
+		background: -webkit-linear-gradient(to right, #f2fcfe, #1c92d2);  /* Chrome 10-25, Safari 5.1-6 */
+		background: linear-gradient(to right, #f2fcfe, #1c92d2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 
 
  	}
@@ -19,8 +20,8 @@
 		cursor: pointer;
 		position: absolute;
 		transform: translate(-50%,-50%);
-		margin-top: 23%;
-		margin-left: 50%;
+		top: 45%;
+		left: 49.5%;
 		border: 4px solid black;
 		display:inline-block;
 		border-radius: 5px;
@@ -31,7 +32,7 @@
 		background: linear-gradient(to top, #5B86E5, #36D1DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 
-		
+
 	}
 	#shop{
 		padding: 5px 25px;
@@ -41,7 +42,7 @@
 		position: absolute;
 		transform: translate(-56%,-50%);
 		top: 55%;
-		left: 51%;
+		left: 50%;
 		border: 4px solid black;
 		display:inline-block;
 		border-radius: 5px;
@@ -52,14 +53,20 @@
 		background: linear-gradient(to top, #5B86E5, #36D1DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 
-		
+
+
+	}
+	#coins{
+		font-family: "Comic Sans MS", cursive, sans-serif;
+
+
 	}
 	@keyframes rgb {
     from {background-color: }
     to {top: 200px;}
 }
 
-		
+
 
 
 
@@ -67,8 +74,16 @@
 	<title></title>
 </head>
 <body id="gg">
-	<a id="play" href="game.html">Play</a><br>
+	<h3 id="coins">Coins: error</h3>
+	<a id="play" href="game.html">Play</a>
 	<a id="shop" href="shop.html">Shop</a>
+	<script>
+	document.getElementById("coins").innerHTML="Coins: "+localStorage.getItem("coins");
+	if(localStorage.getItem("coins")==null){
+		document.getElementById("coins").innerHTML="Coins: 0"
+	}
+
+	</script>
 
 </body>
 </html>
