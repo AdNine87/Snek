@@ -186,7 +186,7 @@ function checkBord()
 		die();
 	}
 		
-
+}
 
 function drawFood() {
 	ctx.fillStyle = foodColorString;
@@ -237,24 +237,58 @@ function checkFoodCollision()
 	if(x[0]==food[0]&&y[0]==food[1])
 	{
 		if (foodType==0) {
-			x.splice(x.length-1, 1);
-			y.splice(y.length-1, 1);
-			score--;
+			if (x<=1) {
+				
+			}else{
+				x.splice(x.length-1, 1);
+				y.splice(y.length-1, 1);
+				score--;
+			}
+			
 
 		}else if(foodType>= 2){
-			x[x.length] = x[x.length - 1] + 10;
-			y[y.length] = y[y.length - 1] + 10;
+			if (leftDirection==true) 
+			{
+				x[x.length] = x[x.length - 1] + 10;
+				//y[y.length] = y[y.length - 1] + 10;
+			}else if(rightDirection==true)
+			{
+				x[x.length] = x[x.length - 1] - 10;
+				//y[y.length] = y[y.length - 1] + 10;
+			}else if(upDirection==true)
+			{
+				//x[x.length] = x[x.length - 1] + 10;
+				y[y.length] = y[y.length - 1] - 10;
+			}else if (downDirection) 
+			{
+				//x[x.length] = x[x.length - 1] + 10;
+				y[y.length] = y[y.length - 1] + 10;
+			}
+			
 			score++;
 		}else if(foodType==1){
-			for(let i = 0; i<10;i++){
-				
+			for(let i = 0; i<5;i++)
+				{
+					if (leftDirection==true) 
+				{
 					x[x.length] = x[x.length - 1] + 10;
+					//y[y.length] = y[y.length - 1] + 10;
+				}else if(rightDirection==true)
+				{
+					x[x.length] = x[x.length - 1] - 10;
+					//y[y.length] = y[y.length - 1] + 10;
+				}else if(upDirection==true)
+				{
+					//x[x.length] = x[x.length - 1] + 10;
+					y[y.length] = y[y.length - 1] - 10;
+				}else if (downDirection) 
+				{
+					//x[x.length] = x[x.length - 1] + 10;
 					y[y.length] = y[y.length - 1] + 10;
-
-
-				
-			}
-			score+=10;
+				}
+					
+				}
+			score+=5;
 		}
 		createFood();
 		
@@ -266,17 +300,17 @@ function checkFoodCollision()
 }
 function die()
 {
-	if (score<=10)
+	if (score<=5)
 	{
 		coinsGained=0;
 
 	}else {
-		coinsGained=score-10;
+		coinsGained=score-5;
 
 	}
 	alert("You died :( coins gained: "+coinsGained);
 	localStorage.setItem("coins",coinsGained+coinsHad);
-	window.location.replace("./index.html");
-
-
+	window.location.replace("./index.html");//kodle!!!!
 }
+
+

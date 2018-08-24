@@ -12,7 +12,7 @@
 		position: absolute;
 		transform: translate(-50%,-50%);
 		top: 15%;
-		left: 12%;
+		left: 18%;
 		border: 4px solid black;
 		display:inline-block;
 		border-radius: 5px;
@@ -39,13 +39,22 @@
 </head>
 <body>
 	<h3 id="coins">Coins: error</h3>
-	<button id="in" type="button" onclick="buyLives()">Buy lives</button>
+	<button id="in" type="button" onclick="buySpeed()">Decrease starting speed</button>
+
+
+
 	<script>
-	let price=2;
-	let lives=localStorage.getItem("lives");
-	//finish speed upgrades
 	
-	document.getElementById("in").innerHTML="Buy lives, price: "+price+" coins"
+	if (localStorage.getItem("price1")==null) 
+	{
+		localStorage.setItem("price1", 10);
+	}
+	let price=parseInt(localStorage.getItem("price1"));
+	let coins=parseInt(localStorage.getItem("coins"));
+	let speed=parseInt(localStorage.getItem("speed"));
+	//finish speed upgrades -done
+	
+	document.getElementById("in").innerHTML="Decrease starting speed, price: "+price+" coins"
 
 
 	//Coins
@@ -53,25 +62,23 @@
 	if(localStorage.getItem("coins")==null){
 		document.getElementById("coins").innerHTML="Coins: 0"
 	}
-	//buy lives
-	boughtLives=localStorage.getItem("lives");
-	boughtLives++;
-	function buyLives(){
-		if (price>localStorage.getItem("coins")) {
-
-		}else{
-			localStorage.setItem("lives",boughtLives);
-			localStorage.setItem("coins",localStorage.getItem("coins")-price);
-			document.getElementById("coins").innerHTML="Coins: "+localStorage.getItem("coins");
-
+	function buySpeed()
+	{
+		if(price>coins){
+			return;
+			
 		}
-
+		localStorage.setItem("coins", coins-price);
+		localStorage.setItem("speed", speed+10);
+		localStorage.setItem("price1", price*2);
+		document.getElementById("coins").innerHTML="Coins: "+localStorage.getItem("coins");
+		document.getElementById("in").innerHTML="Decrease starting speed, price: "+price+" coins"
 
 	}
+	
+	
 
 
 	</script>
-
-
 </body>
 </html>
